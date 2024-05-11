@@ -5,10 +5,11 @@ import {
   Typography,
   Button,
   IconButton,
+  Collapse,
 } from "@material-tailwind/react";
 import { Link, NavLink } from "react-router-dom";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
-import Logo from '../../assets/logo.png';
+import Logo from "../../assets/logo.png";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -22,12 +23,12 @@ const Header = () => {
   }, []);
 
   const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className="mt-2 mb-4 px-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-normal"
+        className="p-1 font-medium hover:text-light-blue-800"
       >
         <NavLink to="/" className="flex items-center">
           Home
@@ -37,7 +38,7 @@ const Header = () => {
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-normal"
+        className="p-1 font-medium hover:text-light-blue-800"
       >
         <NavLink href="#" className="flex items-center">
           All Books
@@ -52,7 +53,8 @@ const Header = () => {
         {/* Logo */}
         <Link to="/" className="mr-4 text-2xl font-bold cursor-pointer py-1.5">
           <img src={Logo} className="w-8 inline-block -mt-1 mr-2" alt="" />
-          <span className="text-light-blue-500">library</span><span className="text-light-blue-900">Log</span>
+          <span className="text-light-blue-500">library</span>
+          <span className="text-light-blue-900">Log</span>
         </Link>
 
         {/* NavLinks */}
@@ -62,21 +64,25 @@ const Header = () => {
             <ProfileMenu />
           ) : (
             <div className="flex items-center gap-x-1">
-              <Button
-                variant="text"
-                size="sm"
-                className="hidden lg:inline-block hover:text-light-blue-600"
-              >
-                <span>Log In</span>
-              </Button>
-              <Button
-                variant="gradient"
-                color="light-blue"
-                size="sm"
-                className="hidden lg:inline-block"
-              >
-                <span>Sign up</span>
-              </Button>
+              <Link to="/login">
+                <Button
+                  variant="text"
+                  size="sm"
+                  className="hidden lg:inline-block hover:text-light-blue-600"
+                >
+                  <span>Log In</span>
+                </Button>
+              </Link>
+              <Link to="/sign-up">
+                <Button
+                  variant="gradient"
+                  color="light-blue"
+                  size="sm"
+                  className="hidden lg:inline-block"
+                >
+                  <span>Sign up</span>
+                </Button>
+              </Link>
             </div>
           )}
 
@@ -120,17 +126,23 @@ const Header = () => {
         </div>
       </div>
 
-      <MobileNav open={openNav}>
+      <Collapse open={openNav}>
         {navList}
-        <div className="flex items-center gap-x-1">
-          <Button fullWidth variant="text" size="sm" className="">
-            <span>Log In</span>
-          </Button>
-          <Button fullWidth variant="gradient" size="sm" className="">
-            <span>Sign in</span>
-          </Button>
-        </div>
-      </MobileNav>
+        {!user && (
+          <div className="flex items-center px-4 gap-x-2">
+            <Link to="/login" className="w-full">
+              <Button fullWidth className="" variant="text" size="sm">
+                <span>Log In</span>
+              </Button>
+            </Link>
+            <Link to="/sign-up" className="w-full">
+              <Button fullWidth variant="gradient" color="light-blue" size="sm">
+                <span>Sign up</span>
+              </Button>
+            </Link>
+          </div>
+        )}
+      </Collapse>
     </Navbar>
   );
 };

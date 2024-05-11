@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"; 
 import { Button, Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 
@@ -17,7 +18,7 @@ const SlideContent = ({ slider }) => {
 
         <Link to="/sign-up" className="flex justify-center md:justify-start">
           <Button size="sm" color="light-blue" variant="gradient">
-            Become a member
+            Get library card
           </Button>
         </Link>
       </div>
@@ -25,6 +26,11 @@ const SlideContent = ({ slider }) => {
       <img src={slider.img} className="h-80 -mr-20 md:-mr-4 md:h-96" alt="" />
     </div>
   );
+};
+
+
+SlideContent.propTypes = {
+  slider: PropTypes.object
 };
 
 export default SlideContent;
