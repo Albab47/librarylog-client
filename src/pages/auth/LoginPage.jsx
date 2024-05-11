@@ -9,10 +9,15 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ErrorMsg from "../../components/ErrorMsg/ErrorMsg";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
+  const { signIn, loginWithGoogle } = useAuth();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -20,9 +25,35 @@ const LoginPage = () => {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async ({ email, password }) => {
+    try {
+      const result = await signIn(email, password);
+      if (result.user) {
+        reset()
+        navigate('/')
+        return toast.success("Login successful");
+      }
+    } catch (err) {
+      const errorCode = err.code;
+      if (errorCode === "auth/invalid-credential") {
+        toast.error("Email and password do not match. Please try again.");
+      }
+    }
   };
+
+  const handleLoginWithGoogle = async () => {
+    try {
+      const result = await loginWithGoogle();
+      if (result.user) {
+        navigate('/')
+        toast.success(`Logged in as ${result.user.displayName}`);
+      }
+    } catch (err) {
+      const errorCode = err.code;
+      toast.error(errorCode);
+    }
+  };
+
 
   return (
     <section className="border min-h-screen grid place-items-center px-4 bg-yellow-50">
@@ -33,7 +64,7 @@ const LoginPage = () => {
           className="mb-4 text-center grid h-24 sm:h-28 place-items-center"
         >
           <div>
-            <Typography variant="h3" color="white">
+            <Typography variant="h3" color="yellow">
               Welcome back
             </Typography>
             <Typography variant="small" color="white">
@@ -103,6 +134,7 @@ const LoginPage = () => {
               fullWidth
               variant="outlined"
               color="blue-gray"
+              onClick={handleLoginWithGoogle}
               className="flex items-center justify-center gap-3"
             >
               <img

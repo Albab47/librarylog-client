@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {
   Navbar,
-  MobileNav,
   Typography,
   Button,
   IconButton,
@@ -10,10 +9,11 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
 import Logo from "../../assets/logo.png";
+import useAuth from "../../hooks/useAuth";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
-  const user = null;
+  const {currentUser} = useAuth() 
 
   useEffect(() => {
     window.addEventListener(
@@ -23,7 +23,7 @@ const Header = () => {
   }, []);
 
   const navList = (
-    <ul className="mt-2 mb-4 px-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className="mt-2 mb-4 px-4 flex flex-col gap-2 lg:px-0 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
         as="li"
         variant="small"
@@ -60,7 +60,7 @@ const Header = () => {
         {/* NavLinks */}
         <div className="flex items-center gap-4">
           <div className="mr-4 hidden lg:block">{navList}</div>
-          {user ? (
+          {currentUser ? (
             <ProfileMenu />
           ) : (
             <div className="flex items-center gap-x-1">
@@ -128,7 +128,7 @@ const Header = () => {
 
       <Collapse open={openNav}>
         {navList}
-        {!user && (
+        {!currentUser && (
           <div className="flex items-center px-4 gap-x-2">
             <Link to="/login" className="w-full">
               <Button fullWidth className="" variant="text" size="sm">
