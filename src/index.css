@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+swiper-container {
+  @apply max-w-screen-xl mx-auto px-4;
+}
+
+.mySwiper {
+    @apply h-full
+}
+
+swiper-slide {
+  height: 100%;
+}

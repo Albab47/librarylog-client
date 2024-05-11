@@ -47,8 +47,8 @@ const Header = () => {
   );
 
   return (
-    <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
-      <div className="max-w-screen-xl mx-auto flex items-center justify-between text-blue-gray-900">
+    <Navbar className="sticky px-0 top-0 z-10 h-max max-w-full rounded-none py-2">
+      <div className="max-w-screen-xl mx-auto px-4 flex items-center justify-between text-blue-gray-900">
         {/* Logo */}
         <Link to="/" className="mr-4 text-2xl font-bold cursor-pointer py-1.5">
           <img src={Logo} className="w-8 inline-block -mt-1 mr-2" alt="" />
@@ -75,7 +75,7 @@ const Header = () => {
                 size="sm"
                 className="hidden lg:inline-block"
               >
-                <span>Sign in</span>
+                <span>Sign up</span>
               </Button>
             </div>
           )}
