@@ -16,6 +16,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import toast from 'react-hot-toast';
 
 
 const ProfileMenu = () => {
@@ -23,6 +24,11 @@ const ProfileMenu = () => {
   const {currentUser, logOut} = useAuth()
 
   const closeMenu = () => setIsMenuOpen(false);
+
+  const handleLogOut = async() => {
+    await logOut();
+    toast.success('Logout Successful')
+  }
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -86,7 +92,7 @@ const ProfileMenu = () => {
             variant="small"
             className="font-normal"
             color="inherit"
-            onClick={() => logOut()}
+            onClick={handleLogOut}
           >
             Sign Out
           </Typography>

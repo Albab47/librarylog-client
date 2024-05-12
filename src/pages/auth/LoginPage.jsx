@@ -13,9 +13,12 @@ import { Link, useNavigate } from "react-router-dom";
 import ErrorMsg from "../../components/ErrorMsg/ErrorMsg";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import useShowPassword from "../../hooks/useShowPassword";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 const LoginPage = () => {
   const { signIn, loginWithGoogle } = useAuth();
+  const { showPassword, handleShowPassword } = useShowPassword();
   const navigate = useNavigate();
 
   const {
@@ -95,10 +98,10 @@ const LoginPage = () => {
             <div>
               <Input
                 label="Password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 color="light-blue"
                 size="lg"
-                icon={<i className="fas fa-heart" />}
+                icon={showPassword ? <IoMdEyeOff onClick={handleShowPassword} /> : <IoMdEye onClick={handleShowPassword} />}
                 {...register("password", {
                   required: "Please enter your password",
                 })}
