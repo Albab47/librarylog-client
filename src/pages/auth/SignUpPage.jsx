@@ -5,7 +5,7 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
@@ -16,6 +16,7 @@ import toast from "react-hot-toast";
 const SignUpPage = () => {
   const { createUser, updateUserProfile } = useAuth();
   const { showPassword, handleShowPassword } = useShowPassword();
+  const navigate = useNavigate()
 
   const {
     register,
@@ -31,6 +32,8 @@ const SignUpPage = () => {
       await createUser(email, password);
       await updateUserProfile(name, photoURL);
       toast.success("Account Created Successfully");
+      reset()
+      navigate('/')
     } catch (error) {
       console.error(error);
       toast.error("Account creation failed");
