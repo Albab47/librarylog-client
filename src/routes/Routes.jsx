@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/auth/LoginPage";
 import SignUpPage from "../pages/auth/SignUpPage";
+import AddBookPage from "../pages/AddBookPage";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <SignUpPage />,
+      },
+      {
+        path: "/add-book",
+        element: <AddBookPage />,
       },
     ],
   },

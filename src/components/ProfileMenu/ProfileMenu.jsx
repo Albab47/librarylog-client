@@ -16,19 +16,19 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import toast from 'react-hot-toast';
-
+import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const ProfileMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const {currentUser, logOut} = useAuth()
+  const { currentUser, logOut } = useAuth();
 
   const closeMenu = () => setIsMenuOpen(false);
 
-  const handleLogOut = async() => {
+  const handleLogOut = async () => {
     await logOut();
-    toast.success('Logout Successful')
-  }
+    toast.success("Logout Successful");
+  };
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -54,20 +54,22 @@ const ProfileMenu = () => {
         </Button>
       </MenuHandler>
       <MenuList className="p-1">
-        <MenuItem
-          onClick={closeMenu}
-          className={`flex items-center gap-2 rounded`}
-        >
-          <PlusCircleIcon className="size-4" />
-          <Typography
-            as="span"
-            variant="small"
-            className="font-normal"
-            color="inherit"
+        <Link to="/add-book">
+          <MenuItem
+            onClick={closeMenu}
+            className={`flex items-center gap-2 rounded`}
           >
-            Add Book
-          </Typography>
-        </MenuItem>
+            <PlusCircleIcon className="size-4" />
+            <Typography
+              as="span"
+              variant="small"
+              className="font-normal"
+              color="inherit"
+            >
+              Add Book
+            </Typography>
+          </MenuItem>
+        </Link>
         <MenuItem
           onClick={closeMenu}
           className={`flex items-center gap-2 rounded`}

@@ -1,0 +1,53 @@
+[
+    {
+      "image": "https://i.ibb.co/TYdG8h9/suspact-x.jpg",
+      "name": "The Devotion of Suspect X",
+      "quantity": 8,
+      "author": "Keigo Higashino",
+      "category": "Fiction",
+      "short_description": "A suspenseful novel about a brilliant mathematician who becomes involved in a murder case, testing the limits of devotion and logic.",
+      "rating": 4,
+      "contents": "The Devotion of Suspect X follows the story of a brilliant mathematician named Ishigami who becomes entangled in a murder case involving his neighbor. As the investigation unfolds, Ishigami's loyalty and devotion are put to the test, leading to unexpected twists and revelations."
+    },
+    {
+      "image": "https://i.ibb.co/h9vPf14/vinchi-code.jpg",
+      "name": "The Da Vinci Code",
+      "quantity": 10,
+      "author": "Dan Brown",
+      "category": "Fiction",
+      "short_description": "A gripping thriller that intertwines art, religion, and history, following symbologist Robert Langdon as he unravels a conspiracy hidden in plain sight.",
+      "rating": 5,
+      "contents": "The Da Vinci Code follows symbologist Robert Langdon and cryptologist Sophie Neveu as they uncover a conspiracy that stretches back centuries. Fueled by hidden messages and secret societies, their quest takes them across Europe as they race to solve the mystery before it's too late."
+    },
+    {
+      "image": "https://i.ibb.co/DgSmqYg/m-of-namia.jpg",
+      "name": "The Miracles of the Namiya General Store",
+      "quantity": 6,
+      "author": "Keigo Higashino",
+      "category": "Fiction",
+      "short_description": "A heartwarming tale about the transformative power of kindness and redemption, centered around a mysterious general store that grants miraculous advice.",
+      "rating": 4,
+      "contents": "The Miracles of the Namiya General Store revolves around a group of troubled individuals who seek refuge in a dilapidated general store. To their surprise, the store's mailbox allows them to communicate with the past, leading to unexpected encounters and life-changing revelations."
+    },
+    {
+      "image": "https://i.ibb.co/PCffbJj/a-of-demons.jpg",
+      "name": "Angels & Demons",
+      "quantity": 9,
+      "author": "Dan Brown",
+      "category": "Fiction",
+      "short_description": "A fast-paced thriller that follows symbologist Robert Langdon as he races against time to stop a secret society from unleashing an ancient vendetta against the Catholic Church.",
+      "rating": 4,
+      "contents": "Angels & Demons introduces symbologist Robert Langdon as he unravels a conspiracy involving the Illuminati and the Catholic Church. Racing against time, Langdon must decipher ancient symbols and navigate the hidden corridors of Vatican City to prevent a catastrophic event."
+    },
+    {
+      "image": "https://i.ibb.co/k19w0NG/the-100-startup.jpg",
+      "name": "The $100 Startup",
+      "quantity": 7,
+      "author": "Chris Guillebeau",
+      "category": "Business",
+      "short_description": "A guide to starting a successful business on a shoestring budget, offering practical advice and inspiring case studies of entrepreneurs who have achieved success with minimal resources.",
+      "rating": 5,
+      "contents": "The $100 Startup provides insights and strategies for aspiring entrepreneurs looking to start a business with minimal investment. Drawing on case studies and real-world examples, Chris Guillebeau shares practical advice on how to identify profitable opportunities, create value, and build a successful business from scratch."
+    }
+  ]
+  
