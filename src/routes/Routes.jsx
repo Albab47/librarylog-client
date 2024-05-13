@@ -6,6 +6,7 @@ import SignUpPage from "../pages/auth/SignUpPage";
 import AddBookPage from "../pages/AddBookPage";
 import PrivateRoute from "./PrivateRoute";
 import BooksPage from "../pages/BooksPage";
+import BookDetailsPage from "../pages/BookDetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
       {
         path: "/books/category/:category",
         element: <PrivateRoute><BooksPage /></PrivateRoute>,
+      },
+      {
+        path: "/books/:id",
+        element: <PrivateRoute><BookDetailsPage /></PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/books/${params.id}`)
       },
     ],
   },

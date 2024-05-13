@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"; 
+import PropTypes from "prop-types";
 import {
   Card,
   CardHeader,
@@ -10,11 +10,11 @@ import {
   Chip,
 } from "@material-tailwind/react";
 import { StarIcon } from "@heroicons/react/24/solid";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const BookCard = ({ book }) => {
   const { _id, name, author, category, photo, rating } = book;
-  const shortName = name.length > 20 ? name.slice(0, 20) : name;
+  const shortName = name.length > 22 ? name.slice(0, 20) : name;
 
   return (
     <Card className="w-full max-w-[26rem] shadow-lg">
@@ -23,10 +23,7 @@ const BookCard = ({ book }) => {
         color="blue-gray"
         className="h-72 flex justify-center p-5 bg-light-blue-50"
       >
-        <img
-          src={photo}
-          className="object-cover rounded-r-2xl"
-        />
+        <img src={photo} className="object-cover rounded-r-2xl" />
         <Chip
           size="sm"
           value={category}
@@ -62,16 +59,17 @@ const BookCard = ({ book }) => {
       </CardBody>
 
       <CardFooter className="pt-3">
-        <Button size="sm" color="light-blue" fullWidth={true}>
-          See Details
-        </Button>
+        <Link to={`/books/${_id}`}>
+          <Button size="sm" color="light-blue" fullWidth={true}>
+            See Details
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   );
 };
 
 export default BookCard;
-
 
 BookCard.propTypes = {
   book: PropTypes.object,
