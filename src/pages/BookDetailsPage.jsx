@@ -19,6 +19,8 @@ import ErrorMsg from "../components/ErrorMsg/ErrorMsg";
 import useAuth from "../hooks/useAuth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const BookDetailsPage = () => {
   const { currentUser } = useAuth();
@@ -35,12 +37,36 @@ const BookDetailsPage = () => {
 
   const handleOpen = () => setOpen(!open);
 
-  const onBorrowBook = async(data) => {
-    data.borrowed_date = new Date().toLocaleDateString()
-    data.return_date = new Date(startDate).toLocaleDateString()
-    console.log(data);
+  const onBorrowBook = async (data) => {
+    data.borrowed_date = new Date().toLocaleDateString();
+    data.return_date = new Date(startDate).toLocaleDateString();
+    const borrowedBook = { ...book, ...data };
+    console.log(borrowedBook);
 
-    
+    // Decrement quantity on borrow
+    try {
+      const { data } = await axios.patch(
+        `${import.meta.env.VITE_API_URL}/books/${_id}`,
+        { quantity: 1 }
+      );
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+
+    // Add book to borrowed book db
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/borrowed-books`,
+        borrowedBook
+      );
+      console.log(data);
+      if(data.insertedId) {
+        toast.success('Book borrowed successfully')
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -94,6 +120,7 @@ const BookDetailsPage = () => {
           <Link href="#" className="inline-block">
             <Button
               onClick={handleOpen}
+              disabled={quantity === 0}
               size="md"
               color="light-blue"
               className="flex items-center gap-2"

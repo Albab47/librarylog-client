@@ -111,6 +111,7 @@ const AddBookPage = () => {
                     containerProps={{ className: "min-w-[50px]" }}
                     {...register("quantity", {
                       required: "This field is required",
+                      valueAsNumber: true,
                     })}
                   />
                   {errors.quantity && (
@@ -130,6 +131,7 @@ const AddBookPage = () => {
                     containerProps={{ className: "min-w-[50px]" }}
                     {...register("rating", {
                       required: "This field is required",
+                      valueAsNumber: true,
                     })}
                   />
                   {errors.rating && (
