@@ -4,6 +4,7 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/auth/LoginPage";
 import SignUpPage from "../pages/auth/SignUpPage";
 import AddBookPage from "../pages/AddBookPage";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-book",
-        element: <AddBookPage />,
+        element: <PrivateRoute><AddBookPage /></PrivateRoute>,
       },
     ],
   },

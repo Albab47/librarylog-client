@@ -9,7 +9,7 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ErrorMsg from "../../components/ErrorMsg/ErrorMsg";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
@@ -20,6 +20,9 @@ const LoginPage = () => {
   const { signIn, loginWithGoogle } = useAuth();
   const { showPassword, handleShowPassword } = useShowPassword();
   const navigate = useNavigate();
+  const location = useLocation()
+  console.log(location);
+  const from = location?.state?.from?.pathname || "/";
 
   const {
     register,
@@ -33,7 +36,7 @@ const LoginPage = () => {
       const result = await signIn(email, password);
       if (result.user) {
         reset()
-        navigate('/')
+        navigate(from, {replace: true})
         return toast.success("Login successful");
       }
     } catch (err) {
