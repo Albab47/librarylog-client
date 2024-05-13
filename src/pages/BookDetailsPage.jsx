@@ -40,7 +40,8 @@ const BookDetailsPage = () => {
   const onBorrowBook = async (data) => {
     data.borrowed_date = new Date().toLocaleDateString();
     data.return_date = new Date(startDate).toLocaleDateString();
-    const borrowedBook = { ...book, ...data };
+    const borrower = {...data}
+    const borrowedBook = { ...book, borrower};
     console.log(borrowedBook);
 
     // Decrement quantity on borrow
