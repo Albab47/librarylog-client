@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"; 
+import PropTypes from "prop-types";
 import { Typography } from "@material-tailwind/react";
 import CategoryCard from "./CategoryCard";
 
@@ -16,18 +16,17 @@ const Categories = ({ categories }) => {
         </Typography>
 
         <div className="pt-12 pb-16 grid gap-6 justify-center md:grid-cols-2 lg:grid-cols-4">
-            {categories?.map(cat => (
-                <CategoryCard key={cat._id} category={cat} />
-            ))}
+          {categories?.map((cat) => (
+            <CategoryCard key={cat._id} category={cat} />
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-
 Categories.propTypes = {
-    categories: PropTypes.array
+  categories: PropTypes.array,
 };
 
 export default Categories;

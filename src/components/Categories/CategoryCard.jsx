@@ -23,7 +23,7 @@ const CategoryCard = ({ category }) => {
         <Typography variant="h5" color="light-blue" className="mb-2">
           {category.category}
         </Typography>
-        <Link>
+        <Link to={`/books/category/${category.category}`}>
           <IconButton color="blue" size="sm" className="group">
             <ChevronRightIcon className="size-5 group-hover:translate-x-1 duration-200" />
           </IconButton>

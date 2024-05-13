@@ -8,7 +8,7 @@ const Loader = ({loading, size}) => {
       <SyncLoader
         color="#44c1ff"
         loading={loading}
-        size={size}
+        size={size || 18}
         aria-label="Loading Spinner"
         data-testid="loader"
       />
