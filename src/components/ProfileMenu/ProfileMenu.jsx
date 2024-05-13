@@ -70,20 +70,22 @@ const ProfileMenu = () => {
             </Typography>
           </MenuItem>
         </Link>
-        <MenuItem
-          onClick={closeMenu}
-          className={`flex items-center gap-2 rounded`}
-        >
-          <BookOpenIcon className="size-4" />
-          <Typography
-            as="span"
-            variant="small"
-            className="font-normal"
-            color="inherit"
+        <Link to={'/borrowed-books'}>
+          <MenuItem
+            onClick={closeMenu}
+            className={`flex items-center gap-2 rounded`}
           >
-            Borrowed Books
-          </Typography>
-        </MenuItem>
+            <BookOpenIcon className="size-4" />
+            <Typography
+              as="span"
+              variant="small"
+              className="font-normal"
+              color="inherit"
+            >
+              Borrowed Books
+            </Typography>
+          </MenuItem>
+        </Link>
         <MenuItem
           onClick={closeMenu}
           className={`flex items-center gap-2 text-red-400 rounded`}

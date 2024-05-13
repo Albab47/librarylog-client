@@ -12,8 +12,8 @@ import {
 import { StarIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
-const BookCard = ({ book }) => {
-  const { _id, name, author, category, photo, rating } = book;
+const BookCard = ({ book, isBooksPage = true }) => {
+  const { _id, name, author, category, photo, rating, borrower } = book;
   const shortName = name.length > 22 ? name.slice(0, 20) : name;
 
   return (
@@ -30,6 +30,7 @@ const BookCard = ({ book }) => {
           className="bg-light-blue-100 rounded-full text-light-blue-700 !absolute top-4 right-4"
         />
       </CardHeader>
+
       <CardBody className="flex-grow">
         <div className="mb-3 flex items-start justify-between">
           <div>
@@ -56,14 +57,41 @@ const BookCard = ({ book }) => {
             {rating + ".0"}
           </Typography>
         </div>
+
+        {!isBooksPage && (
+          <div className="flex justify-between border-t-2 border-dashed pt-5 mt-5">
+            <Typography
+              variant="paragraph"
+              color="blue-gray"
+              className="mb-2 font-medium text-sm"
+            >
+              Return date: 
+              <p className="text-sm font-normal">{borrower.return_date}</p>
+            </Typography>
+            <Typography
+              variant="paragraph"
+              color="blue-gray"
+              className="mb-2 font-medium text-sm"
+            >
+              Borrowed date: 
+              <p className="text-sm font-normal">{borrower.borrowed_date}</p>
+            </Typography>
+          </div>
+        )}
       </CardBody>
 
       <CardFooter className="pt-3">
-        <Link to={`/books/${_id}`}>
+        {isBooksPage ? (
+          <Link to={`/books/${_id}`}>
           <Button size="sm" color="light-blue" fullWidth={true}>
             See Details
           </Button>
         </Link>
+        ) : (
+          <Button size="sm" color="red" variant="gradient" fullWidth={true}>
+            Return book
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );
@@ -73,4 +101,5 @@ export default BookCard;
 
 BookCard.propTypes = {
   book: PropTypes.object,
+  isBooksPage: PropTypes.bool,
 };

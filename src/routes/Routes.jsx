@@ -7,6 +7,7 @@ import AddBookPage from "../pages/AddBookPage";
 import PrivateRoute from "./PrivateRoute";
 import BooksPage from "../pages/BooksPage";
 import BookDetailsPage from "../pages/BookDetailsPage";
+import BorrowedBooksPage from "../pages/BorrowedBooksPage";
 
 const router = createBrowserRouter([
   {
@@ -27,16 +28,37 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-book",
-        element: <PrivateRoute><AddBookPage /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddBookPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/books/category/:category",
-        element: <PrivateRoute><BooksPage /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <BooksPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/books/:id",
-        element: <PrivateRoute><BookDetailsPage /></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/books/${params.id}`)
+        element: (
+          <PrivateRoute>
+            <BookDetailsPage />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/books/${params.id}`),
+      },
+      {
+        path: "/borrowed-books",
+        element: (
+          <PrivateRoute>
+            <BorrowedBooksPage />
+          </PrivateRoute>
+        ),
       },
     ],
   },
