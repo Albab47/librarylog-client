@@ -21,7 +21,6 @@ const LoginPage = () => {
   const { showPassword, handleShowPassword } = useShowPassword();
   const navigate = useNavigate();
   const location = useLocation()
-  console.log(location);
   const from = location?.state?.from?.pathname || "/";
 
   const {
@@ -51,7 +50,7 @@ const LoginPage = () => {
     try {
       const result = await loginWithGoogle();
       if (result.user) {
-        navigate('/')
+        navigate(from, {replace: true})
         toast.success(`Logged in as ${result.user.displayName}`);
       }
     } catch (err) {

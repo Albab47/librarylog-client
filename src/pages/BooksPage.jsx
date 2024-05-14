@@ -7,7 +7,6 @@ import BookCard from "../components/BookCard/BookCard";
 const BooksPage = () => {
   const { category } = useParams();
   const { data: books, isLoading } = useBooksData(category);
-  console.log(books);
 
   if (isLoading) {
     <Loader loading={isLoading} />;

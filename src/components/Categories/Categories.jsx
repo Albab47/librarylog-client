@@ -3,7 +3,6 @@ import { Typography } from "@material-tailwind/react";
 import CategoryCard from "./CategoryCard";
 
 const Categories = ({ categories }) => {
-  console.log(categories);
 
   return (
     <section className="bg-light-blue-400 my-28">

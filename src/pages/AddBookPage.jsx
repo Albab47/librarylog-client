@@ -1,8 +1,6 @@
 import {
   Button,
   Input,
-  Option,
-  Select,
   Textarea,
   Typography,
 } from "@material-tailwind/react";
@@ -10,11 +8,16 @@ import AddBookImg from "../assets/add-book.png";
 import AddBookIcon from "../assets/add-book-icon.png";
 import { useForm } from "react-hook-form";
 import ErrorMsg from "../components/ErrorMsg/ErrorMsg";
-import axios from "axios";
+// import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AddBookPage = () => {
+  const {currentUser} = useAuth()
+  const axiosSecure = useAxiosSecure()
+  
   const {
     register,
     handleSubmit,
@@ -26,11 +29,11 @@ const AddBookPage = () => {
   const onAddBook = async(book) => {
     console.log(book);
     try {
-      const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/books`, book)
+      const {data} = await axiosSecure.post(`/books?email=${currentUser?.email}`, book)
       if (data.insertedId) {
         toast.success("Books added successfully");
         reset();
-        navigate('/')
+        navigate('/books')
       }
     } catch (err) {
       console.error(err);
