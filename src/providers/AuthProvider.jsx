@@ -79,6 +79,7 @@ const AuthProvider = ({ children }) => {
           {loggedUser},
           { withCredentials: true }
         );
+        console.log(data);
       }
     });
     return () => {

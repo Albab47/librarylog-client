@@ -1,9 +1,8 @@
-import { Button, Input, Textarea, Typography } from "@material-tailwind/react";
+import { Button, Input, Typography } from "@material-tailwind/react";
 import UpdateImg from "../assets/updateImg.png";
 import UpdateIcon from "../assets/icons8-update.png";
 import { useForm } from "react-hook-form";
 import ErrorMsg from "../components/ErrorMsg/ErrorMsg";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { useLoaderData, useNavigate, useNavigation } from "react-router-dom";
 import Loader from "../components/Loader/Loader";
