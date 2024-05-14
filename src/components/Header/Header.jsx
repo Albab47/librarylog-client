@@ -40,7 +40,7 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-medium hover:text-light-blue-800"
       >
-        <NavLink href="#" className="flex items-center">
+        <NavLink to="/books" className="flex items-center">
           All Books
         </NavLink>
       </Typography>

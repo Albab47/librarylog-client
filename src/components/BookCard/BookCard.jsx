@@ -7,13 +7,19 @@ import {
   Typography,
   Button,
   Chip,
+  IconButton,
 } from "@material-tailwind/react";
-import { StarIcon } from "@heroicons/react/24/solid";
+import { StarIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const BookCard = ({ book, isBooksPage = true, refetch }) => {
+const BookCard = ({
+  book,
+  isBooksPage = true,
+  allBooksPage = false,
+  refetch,
+}) => {
   const { _id, name, author, category, photo, rating, borrower } = book;
   const shortName = name.length > 22 ? name.slice(0, 20) : name;
 
@@ -33,12 +39,12 @@ const BookCard = ({ book, isBooksPage = true, refetch }) => {
     try {
       console.log(_id);
       const { data } = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/borrowed-books/${_id}`,
+        `${import.meta.env.VITE_API_URL}/borrowed-books/${_id}`
       );
       console.log(data);
       if (data.deletedCount === 1) {
         toast.success("Successfully Book Returned");
-        refetch()
+        refetch();
       }
     } catch (err) {
       console.log(err);
@@ -49,18 +55,33 @@ const BookCard = ({ book, isBooksPage = true, refetch }) => {
     <Card className="w-full max-w-[26rem] shadow-lg">
       <CardHeader
         floated={false}
+        shadow={false}
         color="blue-gray"
         className="h-72 flex justify-center p-5 bg-light-blue-50"
       >
         <img src={photo} className="object-cover rounded-r-2xl" />
-        <Chip
-          size="sm"
-          value={category}
-          className="bg-light-blue-100 rounded-full text-light-blue-700 !absolute top-4 right-4"
-        />
+        {allBooksPage && (
+          <Link to={`/update-book/${_id}`}>
+            <IconButton
+              size="sm"
+              color="light-blue"
+              variant="gradient"
+              className="!absolute z-20 top-1 right-1 rounded-full"
+            >
+              <PencilSquareIcon className="size-7 p-1" />
+            </IconButton>
+          </Link>
+        )}
       </CardHeader>
 
       <CardBody className="flex-grow">
+        <Chip
+          size="sm"
+          variant="ghost"
+          color="light-blue"
+          value={"# " + category}
+          className="rounded-full mb-3 inline-block"
+        />
         <div className="mb-3 flex items-start justify-between">
           <div>
             <Typography
