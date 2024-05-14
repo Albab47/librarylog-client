@@ -6,15 +6,44 @@ import {
   CardFooter,
   Typography,
   Button,
-  IconButton,
   Chip,
 } from "@material-tailwind/react";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
-const BookCard = ({ book, isBooksPage = true }) => {
+const BookCard = ({ book, isBooksPage = true, refetch }) => {
   const { _id, name, author, category, photo, rating, borrower } = book;
   const shortName = name.length > 22 ? name.slice(0, 20) : name;
+
+  const handleReturn = async () => {
+    // Increment quantity on borrow
+    try {
+      const { data } = await axios.patch(
+        `${import.meta.env.VITE_API_URL}/books/${_id}`,
+        { quantity: 1 }
+      );
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+
+    // Remove book from borrowed book db
+    try {
+      console.log(_id);
+      const { data } = await axios.delete(
+        `${import.meta.env.VITE_API_URL}/borrowed-books/${_id}`,
+      );
+      console.log(data);
+      if (data.deletedCount === 1) {
+        toast.success("Successfully Book Returned");
+        refetch()
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Card className="w-full max-w-[26rem] shadow-lg">
@@ -61,19 +90,19 @@ const BookCard = ({ book, isBooksPage = true }) => {
         {!isBooksPage && (
           <div className="flex justify-between border-t-2 border-dashed pt-5 mt-5">
             <Typography
-              variant="paragraph"
+              variant="h6"
               color="blue-gray"
               className="mb-2 font-medium text-sm"
             >
-              Return date: 
+              Return date:
               <p className="text-sm font-normal">{borrower.return_date}</p>
             </Typography>
             <Typography
-              variant="paragraph"
+              variant="h6"
               color="blue-gray"
               className="mb-2 font-medium text-sm"
             >
-              Borrowed date: 
+              Borrowed date:
               <p className="text-sm font-normal">{borrower.borrowed_date}</p>
             </Typography>
           </div>
@@ -83,12 +112,18 @@ const BookCard = ({ book, isBooksPage = true }) => {
       <CardFooter className="pt-3">
         {isBooksPage ? (
           <Link to={`/books/${_id}`}>
-          <Button size="sm" color="light-blue" fullWidth={true}>
-            See Details
-          </Button>
-        </Link>
+            <Button size="sm" color="light-blue" fullWidth={true}>
+              See Details
+            </Button>
+          </Link>
         ) : (
-          <Button size="sm" color="red" variant="gradient" fullWidth={true}>
+          <Button
+            onClick={handleReturn}
+            size="sm"
+            color="red"
+            variant="gradient"
+            fullWidth={true}
+          >
             Return book
           </Button>
         )}
@@ -102,4 +137,5 @@ export default BookCard;
 BookCard.propTypes = {
   book: PropTypes.object,
   isBooksPage: PropTypes.bool,
+  refetch: PropTypes.func,
 };

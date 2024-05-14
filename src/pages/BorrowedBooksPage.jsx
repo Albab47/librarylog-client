@@ -10,7 +10,7 @@ const BorrowedBooksPage = () => {
   console.log(currentUser);
 
   // Fetch user specific borrowed books
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["borrowed-books"],
     queryFn: async () => {
       const { data } = await axios.get(
@@ -33,7 +33,7 @@ const BorrowedBooksPage = () => {
 
       <div className="my-10 grid gap-5 justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {data?.map((book) => (
-          <BookCard key={book._id} book={book} isBooksPage={false} />
+          <BookCard key={book._id} book={book} isBooksPage={false} refetch={refetch} />
         ))}
       </div>
     </section>

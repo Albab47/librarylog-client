@@ -32,7 +32,7 @@ const BookDetailsPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { _id, name, author, category, photo, quantity, shortDesc, desc } =
+  const { _id, name, author, category, photo, rating, quantity, shortDesc, desc } =
     book;
 
   const handleOpen = () => setOpen(!open);
@@ -41,14 +41,15 @@ const BookDetailsPage = () => {
     data.borrowed_date = new Date().toLocaleDateString();
     data.return_date = new Date(startDate).toLocaleDateString();
     const borrower = {...data}
-    const borrowedBook = { ...book, borrower};
+    const bookId = _id;
+    const borrowedBook = { bookId, photo, name, author, category, rating, borrower};
     console.log(borrowedBook);
 
     // Decrement quantity on borrow
     try {
       const { data } = await axios.patch(
         `${import.meta.env.VITE_API_URL}/books/${_id}`,
-        { quantity: 1 }
+        { quantity: -1 }
       );
       console.log(data);
     } catch (err) {
