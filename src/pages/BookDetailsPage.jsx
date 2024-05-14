@@ -44,7 +44,6 @@ const BookDetailsPage = () => {
     shortDesc,
     desc,
   } = book;
-  console.log(_id);
 
   const handleOpen = () => setOpen(!open);
 
@@ -57,9 +56,8 @@ const BookDetailsPage = () => {
         }`
       );
       if (data.name === name) {
-        return toast.success("You have Already borrowed this books");
+        return toast.error("You have Already borrowed this books");
       }
-      console.log(data);
     } catch (err) {
       console.log(err);
     }
@@ -77,7 +75,6 @@ const BookDetailsPage = () => {
       rating,
       borrower,
     };
-    console.log(borrowedBook);
 
     // Decrement quantity on borrow
     try {
@@ -96,7 +93,6 @@ const BookDetailsPage = () => {
         `${import.meta.env.VITE_API_URL}/borrowed-books`,
         borrowedBook
       );
-      console.log(data);
       if (data.insertedId) {
         toast.success("Book borrowed successfully");
         navigate("/borrowed-books");

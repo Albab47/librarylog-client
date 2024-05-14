@@ -27,7 +27,6 @@ const AddBookPage = () => {
   const navigate = useNavigate()
 
   const onAddBook = async(book) => {
-    console.log(book);
     try {
       const {data} = await axiosSecure.post(`/books?email=${currentUser?.email}`, book)
       if (data.insertedId) {

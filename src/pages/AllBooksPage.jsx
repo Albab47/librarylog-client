@@ -23,7 +23,6 @@ const AllBooksPage = () => {
       return data;
     },
   });
-  console.log(books);
 
   if (isLoading) {
     <Loader loading={isLoading} />;

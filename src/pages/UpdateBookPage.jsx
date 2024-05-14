@@ -27,7 +27,6 @@ const UpdateBookPage = () => {
 
   const onUpdateBook = async (book) => {
     const updatedFields = {...book}
-    console.log(updatedFields);
 
     try {
       const { data } = await axiosSecure.patch(

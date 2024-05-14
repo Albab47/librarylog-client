@@ -38,7 +38,6 @@ const BookCard = ({
 
     // Remove book from borrowed book db
     try {
-      console.log(_id);
       const { data } = await axios.delete(
         `${import.meta.env.VITE_API_URL}/borrowed-books/${_id}`
       );

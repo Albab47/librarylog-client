@@ -7,7 +7,6 @@ import useAuth from "../hooks/useAuth";
 
 const BorrowedBooksPage = () => {
   const { currentUser } = useAuth();
-  console.log(currentUser);
 
   // Fetch user specific borrowed books
   const { data, isLoading, refetch } = useQuery({
