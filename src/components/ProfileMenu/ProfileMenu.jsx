@@ -54,6 +54,27 @@ const ProfileMenu = () => {
         </Button>
       </MenuHandler>
       <MenuList className="p-1">
+        <MenuItem
+          onClick={closeMenu}
+          className={`space-y-1 rounded`}
+        >
+          <Typography
+            as="span"
+            variant="small"
+            className="font-medium"
+            color="light-blue"
+          >
+            {currentUser?.displayName}
+          </Typography>
+          <Typography
+            as="small"
+            variant="small"
+            className="text-xs"
+            color="gray"
+          >
+            {currentUser?.email}
+          </Typography>
+        </MenuItem>
         <Link to="/add-book">
           <MenuItem
             onClick={closeMenu}
@@ -70,7 +91,7 @@ const ProfileMenu = () => {
             </Typography>
           </MenuItem>
         </Link>
-        <Link to={'/borrowed-books'}>
+        <Link to={"/borrowed-books"}>
           <MenuItem
             onClick={closeMenu}
             className={`flex items-center gap-2 rounded`}
