@@ -3,6 +3,7 @@ import HeroSlider from "../components/HeroSliders/HeroSlider";
 import axios from "axios";
 import Categories from "../components/Categories/Categories";
 import { Typography } from "@material-tailwind/react";
+import Loader from "../components/Loader/Loader";
 
 const HomePage = () => {
   // Get categories data
@@ -15,7 +16,7 @@ const HomePage = () => {
   })
 
   if(isLoading) {
-    <Typography variant="h1" color="light-blue">Loading...</Typography>
+    return <Loader />
   }
   
   return (
