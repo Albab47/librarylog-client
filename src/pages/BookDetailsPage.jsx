@@ -25,7 +25,7 @@ import toast from "react-hot-toast";
 const BookDetailsPage = () => {
   const { currentUser } = useAuth();
   const book = useLoaderData();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const {
@@ -33,17 +33,50 @@ const BookDetailsPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { _id, name, author, category, photo, rating, quantity, shortDesc, desc } =
-    book;
+  const {
+    _id,
+    name,
+    author,
+    category,
+    photo,
+    rating,
+    quantity,
+    shortDesc,
+    desc,
+  } = book;
+  console.log(_id);
 
   const handleOpen = () => setOpen(!open);
 
   const onBorrowBook = async (data) => {
+    // Check if this book already in borrowed books coll
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/borrowed-books/find/${_id}?email=${
+          currentUser?.email
+        }`
+      );
+      if (data.name === name) {
+        return toast.success("You have Already borrowed this books");
+      }
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+
     data.borrowed_date = new Date().toLocaleDateString();
     data.return_date = new Date(startDate).toLocaleDateString();
-    const borrower = {...data}
+    const borrower = { ...data };
     const bookId = _id;
-    const borrowedBook = { bookId, photo, name, author, category, rating, borrower};
+    const borrowedBook = {
+      bookId,
+      photo,
+      name,
+      author,
+      category,
+      rating,
+      borrower,
+    };
     console.log(borrowedBook);
 
     // Decrement quantity on borrow
@@ -64,9 +97,9 @@ const BookDetailsPage = () => {
         borrowedBook
       );
       console.log(data);
-      if(data.insertedId) {
-        toast.success('Book borrowed successfully')
-        navigate('/borrowed-books')
+      if (data.insertedId) {
+        toast.success("Book borrowed successfully");
+        navigate("/borrowed-books");
       }
     } catch (err) {
       console.log(err);
