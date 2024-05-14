@@ -7,11 +7,15 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useLoaderData, useNavigate, useNavigation } from "react-router-dom";
 import Loader from "../components/Loader/Loader";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import useAuth from "../hooks/useAuth";
 
 const UpdateBookPage = () => {
+  const axiosSecure = useAxiosSecure()
   const book = useLoaderData()
-  const { _id, name, author, category, photo, rating } = book || {};
   const navigation = useNavigation()
+  const {currentUser} = useAuth()
+  const { _id, name, author, category, photo, rating } = book || {};
 
   const {
     register,
@@ -26,14 +30,14 @@ const UpdateBookPage = () => {
     console.log(updatedFields);
 
     try {
-      const { data } = await axios.patch(
-        `${import.meta.env.VITE_API_URL}/update-book/${_id}`,
+      const { data } = await axiosSecure.patch(
+        `/update-book/${_id}?email=${currentUser?.email}`,
         updatedFields
       );
       if (data.modifiedCount) {
         toast.success("Books Updated successfully");
         reset();
-        navigate("/");
+        navigate("/books");
       }
     } catch (err) {
       console.error(err);

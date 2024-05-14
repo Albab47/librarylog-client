@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+
 const BookCard = ({
   book,
   isBooksPage = true,
@@ -158,5 +159,6 @@ export default BookCard;
 BookCard.propTypes = {
   book: PropTypes.object,
   isBooksPage: PropTypes.bool,
+  allBooksPage: PropTypes.bool,
   refetch: PropTypes.func,
 };
