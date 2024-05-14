@@ -5,16 +5,19 @@ import { Squares2X2Icon, ListBulletIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
+import BooksTableView from "../components/BooksTableView/BooksTableView";
 
 const AllBooksPage = () => {
   const [filterAvailableBooks, setFilterAvailableBooks] = useState(false);
+  const [cardView, setCardView] = useState(true);
+  const [tableView, setTableView] = useState(false);
 
   const { data: books, isLoading } = useQuery({
     queryKey: ["books", filterAvailableBooks],
     queryFn: async () => {
       const { data } = await axios.get(
         `${import.meta.env.VITE_API_URL}/books${
-          filterAvailableBooks ? '?filter=quantity' : ''
+          filterAvailableBooks ? "?filter=quantity" : ""
         }`
       );
       return data;
@@ -26,8 +29,19 @@ const AllBooksPage = () => {
     <Loader loading={isLoading} />;
   }
 
+
   const handleShowAvailableBooks = () => {
     setFilterAvailableBooks(!filterAvailableBooks);
+  };
+
+  const handleTableView = () => {
+    setTableView(true);
+    setCardView(false);
+  };
+
+  const handleCardView = () => {
+    setTableView(false);
+    setCardView(true);
   };
 
   return (
@@ -46,6 +60,7 @@ const AllBooksPage = () => {
           </Button>
           <div className="space-x-1">
             <IconButton
+              onClick={handleCardView}
               title="grid-view"
               size="sm"
               variant="outlined"
@@ -55,6 +70,7 @@ const AllBooksPage = () => {
               <Squares2X2Icon className="size-6" />
             </IconButton>
             <IconButton
+              onClick={handleTableView}
               title="list-view"
               size="sm"
               variant="outlined"
@@ -67,11 +83,15 @@ const AllBooksPage = () => {
         </div>
       </div>
 
-      <div className="my-10 grid gap-5 justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {cardView ? (
+        <div className="my-10 grid gap-5 justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {books?.map((book) => (
           <BookCard key={book._id} book={book} allBooksPage={true} />
         ))}
       </div>
+      ) : (
+        <BooksTableView books={books} />
+      )}
     </section>
   );
 };
