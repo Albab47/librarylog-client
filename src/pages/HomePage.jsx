@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import HeroSlider from "../components/HeroSliders/HeroSlider";
 import axios from "axios";
 import Categories from "../components/Categories/Categories";
-import { Typography } from "@material-tailwind/react";
 import Loader from "../components/Loader/Loader";
+import BecomeMember from "../components/BecomeMember/BecomeMember";
 
 const HomePage = () => {
   // Get categories data
@@ -22,6 +22,7 @@ const HomePage = () => {
   return (
     <div>
       <HeroSlider />
+      <BecomeMember />
       <Categories categories={data} />
     </div>
   );
