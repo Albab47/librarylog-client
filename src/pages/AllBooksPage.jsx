@@ -1,21 +1,71 @@
-import { Typography } from "@material-tailwind/react";
+import { Button, IconButton, Typography } from "@material-tailwind/react";
 import Loader from "../components/Loader/Loader";
-import useBooksData from "../hooks/useBooksData";
 import BookCard from "../components/BookCard/BookCard";
+import { Squares2X2Icon, ListBulletIcon } from "@heroicons/react/24/outline";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useState } from "react";
 
 const AllBooksPage = () => {
-  const { data: books, isLoading } = useBooksData();
+  const [filterAvailableBooks, setFilterAvailableBooks] = useState(false);
+
+  const { data: books, isLoading } = useQuery({
+    queryKey: ["books", filterAvailableBooks],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/books${
+          filterAvailableBooks ? '?filter=quantity' : ''
+        }`
+      );
+      return data;
+    },
+  });
   console.log(books);
 
   if (isLoading) {
     <Loader loading={isLoading} />;
   }
 
+  const handleShowAvailableBooks = () => {
+    setFilterAvailableBooks(!filterAvailableBooks);
+  };
+
   return (
     <section className="my-16 max-w-screen-xl mx-auto px-4">
       <Typography variant="h2" className="text-center">
         All Books
       </Typography>
+      <div className="flex justify-center lg:justify-end mt-4">
+        <div className="flex gap-2">
+          <Button
+            onClick={handleShowAvailableBooks}
+            size="sm"
+            color="light-blue"
+          >
+            {filterAvailableBooks ? "Show all books" : "Show available books"}
+          </Button>
+          <div className="space-x-1">
+            <IconButton
+              title="grid-view"
+              size="sm"
+              variant="outlined"
+              color="amber"
+              className="!rounded-r-none hover:bg-light-blue-50"
+            >
+              <Squares2X2Icon className="size-6" />
+            </IconButton>
+            <IconButton
+              title="list-view"
+              size="sm"
+              variant="outlined"
+              color="light-blue"
+              className="!rounded-l-none !rounded-r-sm hover:bg-light-blue-50"
+            >
+              <ListBulletIcon className="size-6" />
+            </IconButton>
+          </div>
+        </div>
+      </div>
 
       <div className="my-10 grid gap-5 justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {books?.map((book) => (

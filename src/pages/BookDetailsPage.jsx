@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -25,6 +25,7 @@ import toast from "react-hot-toast";
 const BookDetailsPage = () => {
   const { currentUser } = useAuth();
   const book = useLoaderData();
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const {
@@ -65,6 +66,7 @@ const BookDetailsPage = () => {
       console.log(data);
       if(data.insertedId) {
         toast.success('Book borrowed successfully')
+        navigate('/borrowed-books')
       }
     } catch (err) {
       console.log(err);
