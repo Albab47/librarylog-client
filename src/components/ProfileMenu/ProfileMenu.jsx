@@ -7,6 +7,7 @@ import {
   MenuList,
   Typography,
 } from "@material-tailwind/react";
+import userIcon from '../../assets/icons8-user-94.png';
 
 import {
   BookOpenIcon,
@@ -42,8 +43,8 @@ const ProfileMenu = () => {
             variant="circular"
             size="sm"
             alt="tania andrew"
-            className="border border-gray-900 p-0.5"
-            src={currentUser?.photoURL}
+            className="border-2 border-yellow-400"
+            src={currentUser?.photoURL || userIcon}
           />
           <ChevronDownIcon
             strokeWidth={2.5}

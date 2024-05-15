@@ -8,10 +8,10 @@ import {
 } from "@material-tailwind/react";
 import { Link, NavLink } from "react-router-dom";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
-import Logo from "../../assets/logo.png";
 import useAuth from "../../hooks/useAuth";
 import { LuMoonStar } from "react-icons/lu";
 import { LuSun } from "react-icons/lu";
+import Logo from "../Logo/Logo";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -66,11 +66,7 @@ const Header = () => {
     <Navbar className="sticky px-0 top-0 z-10 h-max max-w-full rounded-none py-2">
       <div className="max-w-screen-xl mx-auto px-4 flex items-center justify-between text-blue-gray-900">
         {/* Logo */}
-        <Link to="/" className="mr-4 text-2xl font-bold cursor-pointer py-1.5">
-          <img src={Logo} className="w-8 inline-block -mt-1 mr-2" alt="" />
-          <span className="text-light-blue-500">library</span>
-          <span className="text-light-blue-900">Log</span>
-        </Link>
+        <Logo />
 
         {/* NavLinks */}
         <div className="flex items-center gap-4">
