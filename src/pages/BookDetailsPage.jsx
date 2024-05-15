@@ -106,12 +106,12 @@ const BookDetailsPage = () => {
     <section className="my-16 max-w-screen-xl mx-auto px-4 min-h-[calc(100vh-64px)]">
       <Card
         shadow={false}
-        className="!rounded-none w-full flex-col items-center md:items-start mx-auto md:flex-row"
+        className="!rounded-none dark:bg-inherit w-full flex-col items-center md:items-start mx-auto md:flex-row"
       >
         <CardHeader
           shadow={false}
           floated={false}
-          className="m-0 w-2/6 shrink-0 !rounded-none"
+          className="m-0 w-2/6 shrink-0 !rounded-none bg-inherit"
         >
           <img
             src={photo}
@@ -120,18 +120,18 @@ const BookDetailsPage = () => {
           />
         </CardHeader>
         <CardBody className="!py-0">
-          <Typography variant="h4" color="blue-gray" className="mb-3">
+          <Typography variant="h4" color="blue-gray" className="mb-3 dark:text-gray-50">
             {name}
           </Typography>
           <Typography
             variant="paragraph"
             color="gray"
-            className="mb-2 font-normal"
+            className="mb-2 font-normal dark:text-gray-200"
           >
             {/* <img src={AuthorIcon} className="size-6 inline -mt-2 mr-2" alt="" /> */}
             Author: <span className="text-light-blue-600">{author}</span>
           </Typography>
-          <Typography color="gray" className="mb-4 font-normal">
+          <Typography color="gray" className="dark:text-gray-50 mb-4 font-normal">
             Category: <span className="text-light-blue-600">{category}</span>
           </Typography>
 
@@ -139,14 +139,14 @@ const BookDetailsPage = () => {
             variant="ghost"
             color="light-blue"
             size="sm"
-            className="w-40 mb-8"
+            className="w-40 mb-8 dark:text-gray-300 "
             value={"Available quantity: " + quantity}
           />
 
-          <Typography color="gray" className="mb-3 font-normal">
+          <Typography color="gray" className="mb-3 font-normal dark:text-gray-400">
             {shortDesc}
           </Typography>
-          <Typography color="gray" className="mb-8 font-normal">
+          <Typography color="gray" className="mb-8 font-normal dark:text-gray-400">
             {desc}
           </Typography>
 

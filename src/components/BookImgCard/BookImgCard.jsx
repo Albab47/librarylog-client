@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const BookImgCard = ({ book }) => {
   return (
     <Link to={`/books/${book._id}`}>
-      <Card className="drop-shadow-sm pb-4 h-full">
+      <Card className="drop-shadow-sm pb-4 h-full hover:-translate-y-4 transition-transform duration-300">
         <CardHeader shadow={true} floated={false} className="h-76">
           <img
             src={book?.photo}

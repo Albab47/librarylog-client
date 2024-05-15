@@ -46,7 +46,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/books/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/books/${params.id}`),
       },
       {
         path: "/books/category/:category",
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/books/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/books/${params.id}`),
       },
       {
         path: "/borrowed-books",

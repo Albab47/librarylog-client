@@ -10,10 +10,13 @@ import { Link, NavLink } from "react-router-dom";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
 import Logo from "../../assets/logo.png";
 import useAuth from "../../hooks/useAuth";
+import { LuMoonStar } from "react-icons/lu";
+import { LuSun } from "react-icons/lu";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
-  const {currentUser} = useAuth() 
+  const { currentUser } = useAuth();
+  const [theme, setTheme] = useState('light')
 
   useEffect(() => {
     window.addEventListener(
@@ -21,6 +24,18 @@ const Header = () => {
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
+
+  useEffect(() => {
+    if(theme === "dark") {
+      document.querySelector('html').classList.add('dark')
+    } else {
+      document.querySelector('html').classList.remove('dark')
+    }
+  }, [theme])
+
+  const handleThemeChange = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }
 
   const navList = (
     <ul className="mt-2 mb-4 px-4 flex flex-col gap-2 lg:px-0 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -60,6 +75,25 @@ const Header = () => {
         {/* NavLinks */}
         <div className="flex items-center gap-4">
           <div className="mr-4 hidden lg:block">{navList}</div>
+          {theme === "light" ? (
+            <IconButton
+            size="sm"
+            variant="text"
+            onClick={handleThemeChange}
+            className="border hover:bg-light-blue-50"
+          >
+            <LuMoonStar />
+          </IconButton>
+          ) : (
+            <IconButton
+            size="sm"
+            variant="text"
+            onClick={handleThemeChange}
+            className="border hover:bg-light-blue-50"
+          >
+            <LuSun />
+          </IconButton>
+          )}
           {currentUser ? (
             <ProfileMenu />
           ) : (

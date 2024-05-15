@@ -23,7 +23,7 @@ const sliders = [
 
 const HeroSlider = () => {
   return (
-    <section className="bg-yellow-100">
+    <section className="bg-yellow-100 dark:bg-light-blue-600">
       <swiper-container
         class="mySwiper"
         loop="true"

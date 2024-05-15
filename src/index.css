@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  @apply transition-colors duration-300 
+}
+
 swiper-container {
   @apply max-w-screen-xl mx-auto px-4;
 }
@@ -12,4 +16,8 @@ swiper-container {
 
 swiper-slide {
   height: 100%;
+}
+
+body {
+  @apply dark:bg-light-blue-900
 }

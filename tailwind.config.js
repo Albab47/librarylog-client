@@ -7,5 +7,5 @@ module.exports = withMT({
   theme: {
     extend: {},
   },
-  plugins: [],
+  darkMode: "class",
 });
