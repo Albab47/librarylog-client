@@ -10,10 +10,11 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { StarIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import Rating from "react-rating";
 
 const BookCard = ({
   book,
@@ -22,7 +23,7 @@ const BookCard = ({
   refetch,
 }) => {
   const { _id, name, author, category, photo, rating, borrower } = book;
-  const shortName = name.length > 22 ? name.slice(0, 20) : name;
+  const shortName = name.length > 25 ? name.slice(0, 25) : name;
   console.log(_id);
 
   const handleReturn = async () => {
@@ -95,18 +96,24 @@ const BookCard = ({
             <Typography
               variant="small"
               color="blue-gray"
-              className="text-blue-gray-400 text-sm font-normal"
+              className="mb-3 text-blue-gray-400 text-sm font-normal"
             >
               {author}
             </Typography>
+            <Typography
+              color="blue-gray"
+              className="flex items-center gap-1.5 text-sm font-normal"
+            >
+              <Rating
+                initialRating={rating}
+                emptySymbol={<StarIconOutline className="w-4 text-amber-700" />}
+                fullSymbol={<StarIcon className="w-4 text-amber-700" />}
+                fractions={2}
+                readonly
+              />
+              <span className="-mt-1.5 text-gray-500">{rating}</span>
+            </Typography>
           </div>
-          <Typography
-            color="blue-gray"
-            className="flex items-center gap-1.5 text-sm font-normal"
-          >
-            <StarIcon className="size-4 text-amber-600" />
-            {rating + ".0"}
-          </Typography>
         </div>
 
         {!isBooksPage && (
