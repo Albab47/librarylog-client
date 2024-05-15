@@ -21,7 +21,7 @@ const BorrowedBooksPage = () => {
   console.log(data);
 
   if (isLoading) {
-    <Loader loading={isLoading} />;
+    return <Loader loading={isLoading} />;
   }
 
   return (

@@ -22,15 +22,14 @@ const BookCard = ({
   allBooksPage = false,
   refetch,
 }) => {
-  const { _id, name, author, category, photo, rating, borrower } = book;
+  const { _id, bookId, name, author, category, photo, rating, borrower } = book;
   const shortName = name.length > 25 ? name.slice(0, 25) : name;
-  console.log(_id);
 
   const handleReturn = async () => {
-    // Increment quantity on borrow
+    // Increase quantity on return
     try {
       const { data } = await axios.patch(
-        `${import.meta.env.VITE_API_URL}/books/${_id}`,
+        `${import.meta.env.VITE_API_URL}/books/${bookId}`,
         { quantity: 1 }
       );
       console.log(data);

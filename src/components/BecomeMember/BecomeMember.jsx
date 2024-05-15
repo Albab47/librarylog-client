@@ -10,13 +10,13 @@ const BecomeMember = () => {
       <Typography
         variant="h4"
         color="light-blue"
-        className="text-center dark:text-yellow-400 font-bold mb-8 max-w-sm mx-auto"
+        className="text-center text-3xl dark:text-yellow-400 font-bold mb-8 max-w-sm mx-auto"
       >
-        Start Borrowing Books In Simple Steps
+        Start Borrowing Books In Few Steps
       </Typography>
 
       <div className="max-w-screen-xl mx-auto px-4">
-        <ol className="grid grid-cols-1 divide-x divide-gray-100 dark:divide-blue-800 overflow-hidden rounded-lg border border-gray-100 dark:border-blue-800 text-sm text-gray-500 dark:text-gray-200 sm:grid-cols-3">
+        <ol className="grid grid-cols-1 divide-x divide-gray-100 dark:divide-blue-800 overflow-hidden rounded-lg border border-gray-100 dark:border-blue-800 text-md text-gray-500 dark:text-gray-200 sm:grid-cols-3">
           <li className="flex items-center justify-center gap-2 p-4">
             <img src={signinIcon} className="w-10" alt="" />
 

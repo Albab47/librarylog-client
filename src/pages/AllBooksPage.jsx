@@ -25,7 +25,7 @@ const AllBooksPage = () => {
   });
 
   if (isLoading) {
-    <Loader loading={isLoading} />;
+    return <Loader loading={isLoading} />;
   }
 
 

@@ -78,6 +78,7 @@ const BookDetailsPage = () => {
 
     // Decrement quantity on borrow
     try {
+      console.log(_id);
       const { data } = await axios.patch(
         `${import.meta.env.VITE_API_URL}/books/${_id}`,
         { quantity: -1 }
