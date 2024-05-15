@@ -4,7 +4,7 @@ import {
   Textarea,
   Typography,
 } from "@material-tailwind/react";
-import AddBookImg from "../assets/add-book.png";
+import AddBookImg from "../assets/add-book2.png";
 import AddBookIcon from "../assets/add-book-icon.png";
 import { useForm } from "react-hook-form";
 import ErrorMsg from "../components/ErrorMsg/ErrorMsg";
@@ -42,8 +42,8 @@ const AddBookPage = () => {
   return (
     <section className="bg-gray-100 min-h-[calc(100vh-64px)]">
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center gap-16 justify-between lg:gap-8 lg:flex-row">
-          <div className="flex justify-center items-center lg:w-2/5 lg:py-12">
+        <div className="flex flex-col items-center gap-16 lg:justify-between lg:gap-8 lg:flex-row">
+          <div className="w-40 lg:w-1/4 lg:py-12">
             <img src={AddBookImg} alt="" />
           </div>
 
