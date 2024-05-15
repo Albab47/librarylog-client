@@ -23,6 +23,7 @@ const BookCard = ({
 }) => {
   const { _id, name, author, category, photo, rating, borrower } = book;
   const shortName = name.length > 22 ? name.slice(0, 20) : name;
+  console.log(_id);
 
   const handleReturn = async () => {
     // Increment quantity on borrow
